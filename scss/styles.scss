@@ -1,0 +1,540 @@
+// VARIABLES
+$color-rosa-palo: #f2a7c7;
+$color-rosa-palo-hover: #e087a0;
+$color-fondo: #ffffff;
+$color-gris-claro: #f8f8f8;
+$color-texto: #333;
+$font-principal: "Arial", sans-serif;
+
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+// Se añade un breakpoint intermedio para el menú (similar al 900px del CSS)
+$breakpoint-medium: 900px; 
+// $breakpoint-desktop: 1024px; // No se utiliza directamente
+
+// RESET
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// BODY
+body {
+  font-family: $font-principal;
+  background-color: $color-fondo;
+  color: $color-texto;
+  line-height: 1.5;
+  font-size: 16px;
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 15px;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 14px;
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: $color-texto;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2.5rem;
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 2rem;
+  }
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 1.8rem;
+  }
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 1.7rem;
+  }
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 1.5rem;
+  }
+}
+
+h3 {
+  // Ajustado a 1.5rem para coincidir con el CSS final
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 1.3rem;
+  }
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 1.2rem;
+  }
+}
+
+h4 {
+  // Añadido h4 con el estilo del CSS final
+  font-size: 1.2rem;
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 1.1rem;
+  }
+}
+
+// Estilos de Enlace (limpieza de estilos predeterminados)
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  &:visited {
+    color: inherit;
+  }
+  &:hover {
+    color: $color-rosa-palo;
+  }
+}
+
+
+// HEADER
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: $color-gris-claro;
+  padding: 15px 40px; // Ajustado de 20px a 15px
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Sombra añadida
+
+  .logo {
+    img {
+      width: 80px;
+      max-width: 100%;
+      border-radius: 10%;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); // Sombra ajustada
+    }
+  }
+
+  nav {
+    ul {
+      list-style: none;
+      display: flex;
+      transition: transform 0.3s ease-in-out; // Transición añadida
+
+      li {
+        margin: 0 15px;
+        @media (max-width: $breakpoint-medium) {
+          margin: 10px 0;
+          text-align: right;
+        }
+
+        a {
+          text-decoration: none;
+          color: $color-texto;
+          font-size: 16px;
+          padding: 5px 0; // Padding añadido
+          transition: color 0.3s ease; // Transición añadida
+
+          &:hover {
+            color: $color-rosa-palo;
+          }
+        }
+      }
+    }
+
+    // Media query para menú móvil (900px)
+    @media (max-width: $breakpoint-medium) {
+      ul {
+        display: none; // Estado inicial, requiere JS para mostrar
+        flex-direction: column;
+        position: absolute;
+        top: 80px; // Ajustado a 80px
+        right: 20px;
+        background-color: $color-gris-claro;
+        padding: 15px 20px;
+        border-radius: 8px;
+        min-width: 150px; // Ancho mínimo añadido
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Sombra añadida
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    // Cambiado a row y space-between para un header móvil más limpio
+    flex-direction: row; 
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+}
+
+// BANNER INICIO
+.inicio {
+  // Ajustado a 80px y se añade min-height
+  padding-top: 80px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: $color-rosa-palo;
+
+  .banner {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px; // Min-height añadido
+
+    .banner-img {
+      width: 100%;
+      height: 100%; // Ajustado a 100%
+      position: absolute; // Posición absoluta para cubrir el banner
+      top: 0;
+      left: 0;
+      object-fit: cover;
+      opacity: 0.7;
+      z-index: 1; // Z-index añadido
+
+      @media (max-width: $breakpoint-tablet) {
+        min-height: 350px;
+      }
+    }
+    .texto-banner {
+      position: relative; 
+      z-index: 2; // Z-index para superponer
+      color: $color-texto;
+      background-color: rgba(
+        255,
+        255,
+        255,
+        0.9 // Opacidad ajustada
+      ); 
+      padding: 30px; // Padding ajustado
+      max-width: 80%; // Max-width ajustado
+      margin: 40px 20px; // Margin añadido
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); // Sombra más intensa
+      text-align: center;
+
+      p {
+        font-size: 1.2rem;
+        margin: 10px 0 20px;
+      }
+
+      .boton-reserva {
+        padding: 12px 30px;
+        background-color: $color-rosa-palo;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        display: inline-block; // Para que ocupe solo su espacio
+        margin-top: 15px;
+
+        &:hover {
+          background-color: $color-rosa-palo-hover;
+        }
+      }
+
+      @media (max-width: $breakpoint-tablet) {
+        padding: 20px;
+        max-width: 90%;
+      }
+    }
+  }
+}
+
+// SERVICIOS
+.servicios {
+  padding: 60px 20px; // Ajustado a 60px
+  text-align: center;
+  background-color: $color-gris-claro;
+
+  h2 {
+    margin-bottom: 30px;
+  }
+
+  .servicios-container {
+    // Implementación de Grid para 3 columnas
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px; // Gap ajustado a 30px
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .columna-servicio {
+    padding: 20px;
+    background-color: $color-fondo;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-top: 5px solid $color-rosa-palo;
+    text-align: left;
+    
+    h3 {
+      font-size: 1.8rem;
+      color: $color-texto;
+      margin-bottom: 15px; // Margen ajustado
+      padding-bottom: 10px;
+      border-bottom: 2px solid $color-rosa-palo; // Borde inferior
+      text-align: center;
+    }
+
+    .item-servicio {
+      background-color: $color-fondo;
+      padding: 15px; // Padding ajustado
+      border-radius: 6px; // Radio ajustado
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); // Sombra ajustada
+      margin-bottom: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #eee; // Borde ligero
+
+      &:hover {
+        transform: translateY(-5px); // Transform ajustado
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); // Sombra hover ajustada
+      }
+
+      h4 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+        color: $color-rosa-palo; // Color principal
+        text-align: center;
+      }
+
+      p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 10px;
+        text-align: justify;
+      }
+
+      .precio {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: $color-texto; // Color ajustado
+        text-align: right; // Alineación a la derecha
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-medium) {
+    .servicios-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) { // Nuevo breakpoint para apilamiento
+    .servicios-container {
+      grid-template-columns: 1fr;
+    }
+    padding: 40px 15px;
+  }
+}
+
+// GALERÍA
+.galeria {
+  padding: 60px 20px; // Ajustado a 60px
+  text-align: center;
+
+  h2 {
+    margin-bottom: 30px;
+  }
+
+  .imagenes-galeria {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1000px; // Max-width añadido
+    margin: 0 auto;
+
+    img {
+      width: 30%;
+      min-width: 250px; // Mínimo para evitar encogimiento excesivo
+      height: 250px; // Altura fija
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      object-fit: cover;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.03);
+      }
+
+      @media (max-width: $breakpoint-tablet) {
+        width: 45%;
+        min-width: 0;
+      }
+
+      @media (max-width: $breakpoint-mobile) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// EQUIPO
+.equipo {
+  padding: 60px 20px; // Ajustado a 60px
+  text-align: center;
+  background-color: $color-gris-claro; // Fondo gris
+
+  h2 {
+    margin-bottom: 30px;
+  }
+
+  .miembro-equipo {
+    display: inline-block;
+    width: 280px; // Ancho ajustado
+    margin: 15px 25px; // Margen ajustado
+    text-align: center;
+    background-color: $color-fondo; // Fondo blanco
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      object-fit: cover;
+      border: 4px solid $color-rosa-palo; // Borde rosa
+    }
+
+    h3 {
+      margin: 10px 0 5px;
+    }
+
+    p {
+      font-size: 14px;
+      color: gray;
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+      width: 45%;
+      margin: 15px 1%;
+    }
+
+    @media (max-width: 600px) { // Nuevo breakpoint para apilar
+      width: 100%;
+      max-width: 300px;
+      margin: 15px auto;
+      display: block;
+    }
+  }
+}
+
+// CONTACTO Y RESERVA
+.contacto,
+.reserva {
+  padding: 60px 20px; // Ajustado a 60px
+  text-align: center;
+}
+.contacto {
+  background-color: $color-fondo;
+}
+.reserva {
+  background-color: $color-gris-claro;
+}
+
+.contacto,
+.reserva {
+  form {
+    max-width: 450px; // Max-width ajustado
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    label {
+      text-align: left;
+      font-weight: 600;
+    }
+
+    input,
+    textarea,
+    select {
+      padding: 12px; // Padding ajustado
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      width: 100%;
+      resize: vertical;
+    }
+
+    .boton-enviar,
+    .boton-reservar {
+      background-color: $color-rosa-palo;
+      color: white;
+      border: none;
+      padding: 14px; // Padding ajustado
+      cursor: pointer;
+      border-radius: 6px;
+      font-size: 18px; // Tamaño ajustado
+      font-weight: bold; // Negrita añadida
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $color-rosa-palo-hover;
+      }
+    }
+  }
+
+  .informacion-contacto {
+    margin-top: 30px;
+
+    p {
+      margin-bottom: 10px;
+      font-size: 16px;
+
+      a {
+        color: $color-rosa-palo;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .social-media {
+    margin-top: 20px;
+    a {
+      margin: 0 10px;
+      color: $color-rosa-palo;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+  }
+}
+
+
+// FOOTER
+footer {
+  background-color: $color-texto; // Fondo oscuro
+  padding: 20px 40px;
+  text-align: center;
+  font-size: 14px;
+  color: $color-gris-claro; // Texto claro
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 12px;
+    padding: 15px 20px;
+  }
+}
